@@ -1,9 +1,9 @@
 extends ../layout
 
 block content
-  .flex-item.sign-in  
+  .flex-item.sign-up  
     h1 Sign up
-    form(action='/sign-in',method='POST')
+    form(action='/sign-up',method='POST')
       .form-group
         label Mail
         input.form-control(type='mail', name='mail', placeholder='Your email', autofocus)   
