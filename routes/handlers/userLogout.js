@@ -1,7 +1,6 @@
 function userLogout (req, res) {
-  req.session.logged = undefined
+  req.session.userLogged = null
   res.redirect('/')
-  console.log(req.session.logged + ' cookie')
 }
 
 module.exports = userLogout
