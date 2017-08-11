@@ -3,7 +3,6 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 // const cookieSession = require('cookie-session')
-
 var fs = require('fs')
 
 const app = express()
@@ -31,6 +30,27 @@ app.get('/', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
+  const userMail = req.body.mail
+  const userPass = req.body.pass
+
+  fs.readFile('data/users_txt.txt', 'utf-8', (err, data) => {
+    if (err) throw err
+    const userData = data.split('\r\n')
+
+    let matchLogin = userData.some(function (match) {
+      let [mail, password] = match.split(':')
+      return userMail === mail && userPass === password
+    })
+
+    if (matchLogin) {
+      req.session.logged = true
+      res.redirect('/home')
+    } else {
+      res.redirect('/sign-up')
+    }
+  })
+})
+app.post('/sign-up', (req, res) => {
   const userMail = req.body.mail
   const userPass = req.body.pass
 
