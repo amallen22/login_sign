@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  .flex-item.sign-in  
+    h1 Sign up
+    form(action='/sign-in',method='POST')
+      .form-group
+        label Mail
+        input.form-control(type='mail', name='mail', placeholder='Your email', autofocus)   
+      .form-group
+        label Password
+        input.form-control(type='password', name='pass', placeholder='Password')
+      button.btn.btn-default(type='submit') Sign up
